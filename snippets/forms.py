@@ -1,12 +1,14 @@
 from django import forms
+from users.models import User
 from .models import Snippet
 
 class SnippetForm(forms.ModelForm):
-	model = Snippet
-	user = User
-	fields = [
-		'lang',
-		'title',
-		'code',
-		'parent'
-	]
+	class Meta:
+		model = Snippet
+		user = User
+		fields = [
+			'title',
+			'lang',
+			'code',
+			'parent'
+		]
