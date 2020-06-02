@@ -20,6 +20,7 @@ from django.urls import include, path
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('accounts/', include('registration.backends.default.urls')),
+	# path('snippet/add/', include('core.u)
 ]
 
 if settings.DEBUG:

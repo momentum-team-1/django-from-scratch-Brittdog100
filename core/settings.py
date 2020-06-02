@@ -139,3 +139,7 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+# django registration redux
+ACCOUNT_ACTIVATION_DAYS = 3
+REGISTRATION_AUTO_LOGIN = True
