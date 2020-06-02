@@ -3,8 +3,8 @@ from .models import Snippet
 from .forms import SnippetForm
 
 def list_snippets(request):
-	if request.method == 'GET':
-		pass
+	snippets = Snippet.objects.all()
+	return render(request, "snippet/list.html", {"snippets": snippets})
 
 def add_snippet(request):
 	if request.method == 'GET':

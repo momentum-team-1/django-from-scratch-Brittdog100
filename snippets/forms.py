@@ -7,5 +7,6 @@ class SnippetForm(forms.ModelForm):
 	fields = [
 		'lang',
 		'title',
-		'code'
+		'code',
+		'parent'
 	]
