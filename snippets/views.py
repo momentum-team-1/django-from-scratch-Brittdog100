@@ -33,5 +33,16 @@ def edit_snippet(request, pk):
 			return redirect(to = 'list_snippets')
 	return render(request, "edit_snip.html", {"form": form, "snippet": snippet})
 
+def make_child(request, parent_pk):
+	parent = get_object_or_404(Snippet, pk = parent_pk)
+	child = Snippet()
+	child.author = request.user
+	child.parent = parent
+	child.code = parent.code
+	child.lang = parent.lang
+	child.title = ('Copy of "' + parent.title + '"')
+	child.save()
+	return redirect(to = 'edit_snippet', args = { 'pk': child.pk })
+
 def homepage(request):
 	return render(request, "")
