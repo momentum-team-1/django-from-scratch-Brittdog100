@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ snippet.title }}</h1>
+<h2>{{ snippet.lang }}</h2>
+
+{% if snippet.parent %}
+	<a href="{% url 'view_snip' pk=snippet.parent.pk %}">parent</a>
+{% endif %}
+<p id="code">{{ snippet.code }}</p>
+
+{% endblock %}

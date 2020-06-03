@@ -6,11 +6,11 @@ class SnippetForm(forms.ModelForm):
 	class Meta:
 		model = Snippet
 		user = User
+		parent = Snippet
 		fields = [
 			'title',
 			'lang',
-			'code',
-			'parent'
+			'code'
 		]
 
 # TODO: tag form
