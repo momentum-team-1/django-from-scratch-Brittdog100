@@ -3,9 +3,10 @@ from django.contrib.auth.decorators import login_required
 from .models import Snippet
 from .forms import SnippetForm
 
+@login_required
 def list_snippets(request):
 	snippets = request.user.snippets.all()
-	return render(request, "list.html", {"snippets": snippets})
+	return render(request, "list.html", { "snippets": snippets })
 
 @login_required
 def add_snippet(request):
@@ -14,13 +15,15 @@ def add_snippet(request):
 	else:
 		form = SnippetForm(data = request.POST)
 		if form.is_valid():
-			form.save()
-			return redirect(to = 'list_snippets')
-	return render(request, "add_snip.html", {'form': form})
+			snip = form.save(commit = False)
+			snip.author = request.user
+			snip.save()
+			return redirect(to = 'list_snip')
+	return render(request, "add_snip.html", { 'form': form })
 
 def view_snippet(request, pk):
 	snippet = get_object_or_404(Snippet, pk = pk)
-	return render(request, "see_snip.html", {"snippet": snippet})
+	return render(request, "see_snip.html", { "snippet": snippet })
 
 def edit_snippet(request, pk):
 	snippet = get_object_or_404(Snippet, pk = pk)
@@ -30,8 +33,8 @@ def edit_snippet(request, pk):
 		form = SnippetForm(data =  request.POST, instance = snippet)
 		if form.is_valid():
 			form.save()
-			return redirect(to = 'list_snippets')
-	return render(request, "edit_snip.html", {"form": form, "snippet": snippet})
+			return redirect(to = 'list_snip')
+	return render(request, "edit_snip.html", { "form": form, "snippet": snippet })
 
 def make_child(request, parent_pk):
 	parent = get_object_or_404(Snippet, pk = parent_pk)
@@ -43,6 +46,14 @@ def make_child(request, parent_pk):
 	child.title = ('Copy of "' + parent.title + '"')
 	child.save()
 	return redirect(to = 'edit_snippet', args = { 'pk': child.pk })
+
+def del_snip(request, pk):
+	snippet = get_object_or_404(Snippet, pk = pk)
+	if request.method == 'POST':
+		snippet.delete()
+		return redirect(to = 'list_snip')
+	return render(request, 'del_snip.html', { "snippet": snippet })
+		
 
 def homepage(request):
 	return render(request, "home.html")

@@ -2,4 +2,8 @@
 
 {% block content %}
 <h1 id="code">|-Snip It!-|</h1>
+{% if user.is_authenticated %}
+	Howdy {{ user.username }}!
+{% endif %}
+
 {% endblock %}

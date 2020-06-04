@@ -1,1 +1,18 @@
 {% extends "base.html" %}
+
+{% block content %}
+<h1>Your Snippets</h1>
+<a href="{% url 'add_snip' %}">New</a>
+<hr>
+	{% for snippet in snippets %}
+		<div>
+			<h2>{{ snippet.title }}</h2>
+			<h3>{{ snippet.lang }}</h3>
+			<p id="code">{{ snippet.code }}</p>
+			<a href="{% url 'edit_snip' pk=snippet.pk %}">Edit</a>
+			<a href="{% url 'child_snip' parent_pk=snippet.pk %}">Make Child</a>
+			<a href="{% url 'del_snip' pk=snippet.pk %}">Delete</a>
+			<hr>
+		</div>
+	{% endfor %}
+{% endblock %}

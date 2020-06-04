@@ -3,7 +3,7 @@
 {% block content %}
 <h1>New Code Snippet</h1>
 <div>
-	<form action="{% url 'add_snip' %}">
+	<form action="{% url 'add_snip' %}" method="POST">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<div>

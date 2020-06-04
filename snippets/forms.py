@@ -5,7 +5,7 @@ from .models import Snippet#, Tag
 class SnippetForm(forms.ModelForm):
 	class Meta:
 		model = Snippet
-		user = User
+		author = User
 		parent = Snippet
 		fields = [
 			'title',

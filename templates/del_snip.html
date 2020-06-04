@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<form action="{% url 'del_snip' pk=snippet.pk %}" method="POST">
+		{% csrf_token %}
+		<p>
+			What if I really deleted {{ snippet.title }}?
+			haha, just kidding... unless?
+		</p>
+		<div>
+			<button type="submit">Delete</button><br />
+			<a href="{% url 'list_snip' %}">Cancel</a>
+		</div>
+	</form>
+{% endblock %}

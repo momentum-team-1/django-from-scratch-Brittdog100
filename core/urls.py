@@ -21,11 +21,13 @@ from snippets import views as snippet_views
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('accounts/', include('registration.backends.default.urls')),
-	path('', snippet_views.list_snippets, name = "home"),
+	path('', snippet_views.homepage, name = 'home'),
+	path('list/', snippet_views.list_snippets, name = "list_snip"),
 	path('snippet/<int:pk>/edit/', snippet_views.edit_snippet, name = 'edit_snip'),
 	path('snippet/add/', snippet_views.add_snippet, name = "add_snip"),
 	path('snippet/<int:pk>/', snippet_views.view_snippet, name = "view_snip"),
-	#path('snippet/<int:parent_pk>/child', snippet_views.make_child, name = 'child_snip')
+	path('snippet/<int:parent_pk>/child', snippet_views.make_child, name = 'child_snip'),
+	path('snippet/<int:pk>/del', snippet_views.del_snip, name = "del_snip")
 ]
 
 if settings.DEBUG:
