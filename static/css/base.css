@@ -1,7 +1,26 @@
-#code {
+body {
+	color: #FFFFFF;
+	background-color: #323232;
+}
+
+a {
+	color: #5656FF;
+}
+a:visited {
+	color: #8F3B8F;
+}
+
+*#code {
+	/* Fira Code is the best font */
 	font-family: "Fira Code", monospace;
-	border: solid;
-	border-width: 2px;
-	border-color: black;
+	color: #FFFFFF;
+	/* dark mode engaged */
+	background-color: #10103F;
+	border-radius: 2px;
+	/*
+	 *	In case anyone is wondering: this makes the HTML respect
+	 *	the whitespace of the text in the field, since we'll be
+	 *	working with code, so the readability is kind of important.
+	 */
 	white-space: pre-wrap;
 }
