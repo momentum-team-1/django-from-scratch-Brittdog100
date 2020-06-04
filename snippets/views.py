@@ -45,7 +45,7 @@ def make_child(request, parent_pk):
 	child.lang = parent.lang
 	child.title = ('Copy of "' + parent.title + '"')
 	child.save()
-	return redirect(to = 'edit_snippet', args = { 'pk': child.pk })
+	return edit_snippet(request, child.id)
 
 def del_snip(request, pk):
 	snippet = get_object_or_404(Snippet, pk = pk)
