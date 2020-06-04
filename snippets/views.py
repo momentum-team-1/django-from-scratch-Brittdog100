@@ -45,4 +45,4 @@ def make_child(request, parent_pk):
 	return redirect(to = 'edit_snippet', args = { 'pk': child.pk })
 
 def homepage(request):
-	return render(request, "")
+	return render(request, "home.html")
