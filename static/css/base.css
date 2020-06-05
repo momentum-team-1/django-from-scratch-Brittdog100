@@ -1,6 +1,7 @@
 body {
 	color: #FFFFFF;
 	background-color: #323232;
+	font-family: sans-serif;
 }
 
 a {
@@ -10,7 +11,7 @@ a:visited {
 	color: #5656FF; /*#8F3B8 for a different look*/
 }
 
-*#code {
+code, h1#title {
 	/* Fira Code is the best font */
 	font-family: "Fira Code", monospace;
 	color: #FFFFFF;

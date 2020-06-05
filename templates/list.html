@@ -8,7 +8,7 @@
 		<div>
 			<h2><a href="{% url 'view_snip' pk=snippet.pk %}"}>{{ snippet.title }}</a></h2>
 			<h3>{{ snippet.lang }}</h3>
-			<p id="code">{{ snippet.code }}</p>
+			<pre><code id="{{ snippet.lang }}">{{ snippet.code }}</code></pre>
 			<a href="{% url 'edit_snip' pk=snippet.pk %}">Edit</a>
 			<a href="{% url 'child_snip' parent_pk=snippet.pk %}">Make Child</a>
 			<a href="{% url 'del_snip' pk=snippet.pk %}">Delete</a>
