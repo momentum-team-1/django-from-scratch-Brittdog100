@@ -144,3 +144,4 @@ INTERNAL_IPS = [
 # django registration redux
 ACCOUNT_ACTIVATION_DAYS = 3
 REGISTRATION_AUTO_LOGIN = True
+LOGIN_URL = 'accounts/login'
