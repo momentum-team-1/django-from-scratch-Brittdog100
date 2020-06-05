@@ -2,6 +2,7 @@
 
 {% block content %}
 <h1>Your Snippets</h1>
+<a href="{% url 'home' %}">../</a><br>
 <a href="{% url 'add_snip' %}">New</a>
 <hr>
 	{% for snippet in snippets %}
