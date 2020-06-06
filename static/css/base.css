@@ -15,11 +15,12 @@ code, h1#title {
 	/* Fira Code is the best font */
 	font-family: "Fira Code", monospace;
 	color: #FFFFFF;
-	/* dark mode engaged */
-	background-color: #10103F;
-	border-radius: 2px;
-	/*
-	 *	In case anyone is wondering: this makes the HTML respect
+	/*	I didn't really like the way the background color wound
+	 *	up looking, so I'm leaving it transparent.
+	 *	I'll still die on my dark mode hill, though.
+	 */
+	/*background-color: #10103F;*/
+	/*	In case anyone is wondering: this makes the HTML respect
 	 *	the whitespace of the text in the field, since we'll be
 	 *	working with code, so the readability is kind of important.
 	 */
