@@ -27,7 +27,8 @@ urlpatterns = [
 	path('snippet/add/', snippet_views.add_snippet, name = "add_snip"),
 	path('snippet/<int:pk>/', snippet_views.view_snippet, name = "view_snip"),
 	path('snippet/<int:parent_pk>/child', snippet_views.make_child, name = 'child_snip'),
-	path('snippet/<int:pk>/del', snippet_views.del_snip, name = "del_snip")
+	path('snippet/<int:pk>/del', snippet_views.del_snip, name = "del_snip"),
+	path('search/<str:query>/', snippet_views.search, name = "search")
 ]
 
 if settings.DEBUG:

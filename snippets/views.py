@@ -53,7 +53,9 @@ def del_snip(request, pk):
 		snippet.delete()
 		return redirect(to = 'list_snip')
 	return render(request, 'del_snip.html', { "snippet": snippet })
-		
+
+def search(request, query):
+	return render(request, "search.html", {"query": query})
 
 def homepage(request):
 	return render(request, "home.html")
