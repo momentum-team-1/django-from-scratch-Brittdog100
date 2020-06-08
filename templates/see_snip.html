@@ -11,7 +11,7 @@
 	<a href="{% url 'view_snip' pk=snippet.parent.pk %}">parent</a>
 {% endif %}
 <pre><code id="{{ snippet.lang }}">{{ snippet.code }}</code></pre>
+<a href="{% url 'edit_snip' pk=snippet.pk %}">Edit</a><br>
 <a href="#" id="copy">Copy text</a><br>
 <a href="{% url 'child_snip' parent_pk=snippet.pk %}">Make a child</a>
-
 {% endblock %}

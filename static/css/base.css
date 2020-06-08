@@ -7,9 +7,6 @@ body {
 a {
 	color: #5656FF;
 }
-a:visited {
-	color: #5656FF; /*#8F3B8 for a different look*/
-}
 
 code, h1#title {
 	/* Fira Code is the best font */
@@ -25,6 +22,13 @@ code, h1#title {
 	 *	working with code, so the readability is kind of important.
 	 */
 	white-space: pre-wrap;
+}
+
+*#hasquery {
+	color :#B74A4A;
+}
+*#hasquery > a {
+	color: #B74A4A;
 }
 
 .tag {

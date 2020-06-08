@@ -2,20 +2,21 @@
 
 {% block content %}
 	<h1>Search results: {{ query }}</h1>
+	<hr>
 
 	{% for snippet in user.snippets.all %}
 		{% if query in snippet.lang %}
-			<h2>{{ snippet.title }}</h2>
+			<h2><a href="{% url 'edit_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
 			<h3 id="hasquery">{{ snippet.lang }}</h3>
 			<pre><code>{{ snippet.code }}</code></pre>
 			<hr>
 		{% elif query in snippet.title %}
-			<h2 id="hasquery">{{ snippet.title }}</h2>
+			<h2 id="hasquery"><a href="{% url 'edit_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
 			<h3>{{ snippet.lang }}</h3>
 			<pre><code>{{ snippet.code }}</code></pre>
 			<hr>
 		{% elif query in snippet.code %}
-			<h2>{{ snippet.title }}</h2>
+			<h2><a href="{% url 'edit_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
 			<h3>{{ snippet.lang }}</h3>
 			<pre><code id="hasquery">{{ snippet.code }}</code></pre>
 			<hr>
