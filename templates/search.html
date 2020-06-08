@@ -1,30 +1,24 @@
 {% extends "base.html" %}
 
-<!--
-	thoughts on search: I'll foreach all of the
-	user's snippets, and sort searches by a relevance
-	hierarchy: lang, title, tags, and then code.
-	The issue isn't really writing it, it's optimizing
-	it, because I don't want it to be super ugly.
--->
+{% block content %}
+	<h1>Search results: {{ query }}</h1>
 
-<h1>Search results: {{ query }}</h1>
-
-{% for snippet in user.snippets %}
-	{% if query in snippet.lang %}
-		<h2>{{ snippet.title }}</h2>
-		<h3 id="hasquery">{{ snippet.lang }}</h3>
-		<pre><code>{{ snippet.code }}</code></pre>
-		<hr>
-	{% elif query in snippet.title %}
-		<h2 id="hasquery">{{ snippet.title }}</h2>
-		<h3>{{ snippet.lang }}</h3>
-		<pre><code>{{ snippet.code }}</code></pre>
-		<hr>
-	{% elif query in snippet.code %}
-		<h2>{{ snippet.title }}</h2>
-		<h3>{{ snippet.lang }}</h3>
-		<pre><code id="hasquery">{{ snippet.code }}</code></pre>
-		<hr>
-	{% endif %}
-{% endfor %}
+	{% for snippet in user.snippets.all %}
+		{% if query in snippet.lang %}
+			<h2>{{ snippet.title }}</h2>
+			<h3 id="hasquery">{{ snippet.lang }}</h3>
+			<pre><code>{{ snippet.code }}</code></pre>
+			<hr>
+		{% elif query in snippet.title %}
+			<h2 id="hasquery">{{ snippet.title }}</h2>
+			<h3>{{ snippet.lang }}</h3>
+			<pre><code>{{ snippet.code }}</code></pre>
+			<hr>
+		{% elif query in snippet.code %}
+			<h2>{{ snippet.title }}</h2>
+			<h3>{{ snippet.lang }}</h3>
+			<pre><code id="hasquery">{{ snippet.code }}</code></pre>
+			<hr>
+		{% endif %}
+	{% endfor %}
+{% endblock %}

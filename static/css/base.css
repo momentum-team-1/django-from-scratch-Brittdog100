@@ -26,3 +26,8 @@ code, h1#title {
 	 */
 	white-space: pre-wrap;
 }
+
+.tag {
+	background-color: #6F6F6F;
+	border-radius: 12px;
+}

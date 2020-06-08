@@ -54,8 +54,13 @@ def del_snip(request, pk):
 		return redirect(to = 'list_snip')
 	return render(request, 'del_snip.html', { "snippet": snippet })
 
+def tag_view(request, tagname):
+	pass #tag = get_object_or_404(Tag, tag = tagname)
+
+@login_required
 def search(request, query):
-	return render(request, "search.html", {"query": query})
+	print(query)
+	return render(request, "search.html", { "query": query, "user": request.user })
 
 def homepage(request):
 	return render(request, "home.html")
