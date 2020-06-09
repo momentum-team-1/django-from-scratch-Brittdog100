@@ -32,6 +32,10 @@ code, h1#title {
 }
 
 .tag {
-	background-color: #6F6F6F;
+	color: #FFFFFF;
+	background-color: #5F5F5F;
+	margin-left: 10px;
+	padding-left: 4px;
+	padding-right: 4px;
 	border-radius: 12px;
 }

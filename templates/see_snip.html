@@ -6,11 +6,17 @@
 <hr>
 <h2>{{ snippet.lang }}</h2>
 <h2>By {{ snippet.author }}</h2>
-
+<hr>
 {% if snippet.parent %}
 	<a href="{% url 'view_snip' pk=snippet.parent.pk %}">parent</a>
 {% endif %}
 <pre><code id="{{ snippet.lang }}">{{ snippet.code }}</code></pre>
+<hr>
+<span>
+	{% for tag in snippet.tags.all %}
+		<a class="tag">{{ tag.tag }}</a>
+	{% endfor %}
+</span><br>
 <a href="{% url 'edit_snip' pk=snippet.pk %}">Edit</a><br>
 <a href="#" id="copy">Copy text</a><br>
 <a href="{% url 'child_snip' parent_pk=snippet.pk %}">Make a child</a>
