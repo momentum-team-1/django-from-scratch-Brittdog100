@@ -60,9 +60,12 @@ def tag_view(request, tagname):
 	pass #tag = get_object_or_404(Tag, tag = tagname)
 
 @login_required
-def search(request, query):
-	print(query)
-	return render(request, "search.html", { "query": query, "user": request.user })
+def search(request):
+	query = request.GET.get('q')
+	if query is not None:
+		return render(request, "search.html", { "query": query, "user": request.user })
+	else:
+		return render(request, "search.html")
 
 def homepage(request):
 	return render(request, "home.html")

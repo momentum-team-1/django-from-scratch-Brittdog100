@@ -1,54 +1,62 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>Search results: {{ query }}</h1>
-	<hr>
+	<h3>Search:</h3>
+	<form action="{% url 'search' %}", method="GET">
+		<input name="q" placeholder="search...">
+	</form>
+	{% if query is None %}
 
-	{% for snippet in user.snippets.all %}
-		{% if query in snippet.lang %}
-			<h2><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
-			<h3 id="hasquery">{{ snippet.lang }}</h3>
-			<pre><code>{{ snippet.code }}</code></pre>
-			<span>
-				{% for tag in snippet.tags.all %}
-					<a class="tag">{{ tag.tag }}</a>
-				{% endfor %}
-			</span>
-			<hr>
-		{% elif query in snippet.get_tags %}
-			<h2><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
-			<h3>{{ snippet.lang }}</h3>
-			<pre><code>{{ snippet.code }}</code></pre>
-			<span>
-				{% for tag in snippet.tags.all %}
-					{% if query in tag.tag %}
-						<a class="tag" id="hasquery">{{ tag.tag }}</a>
-					{% else %}
+	{% else %}
+		<h1>Search results: {{ query }}</h1>
+		<hr>
+
+		{% for snippet in user.snippets.all %}
+			{% if query in snippet.lang %}
+				<h2><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
+				<h3 id="hasquery">{{ snippet.lang }}</h3>
+				<pre><code>{{ snippet.code }}</code></pre>
+				<span>
+					{% for tag in snippet.tags.all %}
 						<a class="tag">{{ tag.tag }}</a>
-					{% endif %}
-				{% endfor %}
-			</span>
-			<hr>
-		{% elif query in snippet.title %}
-			<h2 id="hasquery"><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
-			<h3>{{ snippet.lang }}</h3>
-			<pre><code>{{ snippet.code }}</code></pre>
-			<span>
-				{% for tag in snippet.tags.all %}
-					<a class="tag">{{ tag.tag }}</a>
-				{% endfor %}
-			</span>
-			<hr>
-		{% elif query in snippet.code %}
-			<h2><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
-			<h3>{{ snippet.lang }}</h3>
-			<pre><code id="hasquery">{{ snippet.code }}</code></pre>
-			<span>
-				{% for tag in snippet.tags.all %}
-					<a class="tag">{{ tag.tag }}</a>
-				{% endfor %}
-			</span>
-			<hr>
-		{% endif %}
-	{% endfor %}
+					{% endfor %}
+				</span>
+				<hr>
+			{% elif query in snippet.get_tags %}
+				<h2><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
+				<h3>{{ snippet.lang }}</h3>
+				<pre><code>{{ snippet.code }}</code></pre>
+				<span>
+					{% for tag in snippet.tags.all %}
+						{% if query in tag.tag %}
+							<a class="tag" id="hasquery">{{ tag.tag }}</a>
+						{% else %}
+							<a class="tag">{{ tag.tag }}</a>
+						{% endif %}
+					{% endfor %}
+				</span>
+				<hr>
+			{% elif query in snippet.title %}
+				<h2 id="hasquery"><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
+				<h3>{{ snippet.lang }}</h3>
+				<pre><code>{{ snippet.code }}</code></pre>
+				<span>
+					{% for tag in snippet.tags.all %}
+						<a class="tag">{{ tag.tag }}</a>
+					{% endfor %}
+				</span>
+				<hr>
+			{% elif query in snippet.code %}
+				<h2><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
+				<h3>{{ snippet.lang }}</h3>
+				<pre><code id="hasquery">{{ snippet.code }}</code></pre>
+				<span>
+					{% for tag in snippet.tags.all %}
+						<a class="tag">{{ tag.tag }}</a>
+					{% endfor %}
+				</span>
+				<hr>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
 {% endblock %}

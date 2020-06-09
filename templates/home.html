@@ -7,6 +7,11 @@
 	<a href="accounts/logout/">Log out</a>
 	<br>
 	<a href="list/">Take me to my snippets</a>
+	<p>Want to search your code, {{ user.username }}?</p>
+	<form action="{% url 'search' %}", method="GET">
+		<input name="q" placeholder="search...">
+		<button type="submit">Let's go!</button>
+	</form>
 {% else %}
 	<p>Salutations! Please <a href="accounts/login">log in</a>
 	or <a href="accounts/register">sign up</a>!</p>
