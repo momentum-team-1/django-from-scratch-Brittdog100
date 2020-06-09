@@ -18,6 +18,7 @@ def add_snippet(request):
 			snip = form.save(commit = False)
 			snip.author = request.user
 			snip.save()
+			snippet.set_tags(form.cleaned_data['tag_names'])
 			return redirect(to = 'list_snip')
 	return render(request, "add_snip.html", { 'form': form })
 
@@ -33,6 +34,7 @@ def edit_snippet(request, pk):
 		form = SnippetForm(data =  request.POST, instance = snippet)
 		if form.is_valid():
 			form.save()
+			snippet.set_tags(form.cleaned_data['tag_names'])
 			return redirect(to = 'list_snip')
 	return render(request, "edit_snip.html", { "form": form, "snippet": snippet })
 

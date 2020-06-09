@@ -14,10 +14,11 @@
 <hr>
 <span>
 	{% for tag in snippet.tags.all %}
-		<a class="tag">{{ tag.tag }}</a>
+		<a class="tag" href="{% url 'search' query=tag.tag %}">{{ tag.tag }}</a>
 	{% endfor %}
 </span><br>
 <a href="{% url 'edit_snip' pk=snippet.pk %}">Edit</a><br>
 <a href="#" id="copy">Copy text</a><br>
-<a href="{% url 'child_snip' parent_pk=snippet.pk %}">Make a child</a>
+<a href="{% url 'child_snip' parent_pk=snippet.pk %}">Make a child</a><br>
+<a href="{% url 'del_snip' pk=snippet.pk %}">Delete</a>
 {% endblock %}
