@@ -7,7 +7,7 @@ class Snippet(models.Model):
 	lang = models.CharField(max_length = 31)
 	code = models.TextField(max_length = 32767)
 	parent = models.ForeignKey(to = 'self', on_delete = models.SET_NULL, related_name = "children", null = True, blank = True)
-	tags = models.ManyToManyField(to = 'Tag', related_name = "snips", blank = True)
+	tags = models.ManyToManyField(to = 'Tag', related_name = "snips", null = True)
 	def get_tags(self):
 		tl = [str(tag) for tag in self.tags.all()]
 		return (", ".join(tl))
@@ -18,12 +18,14 @@ class Snippet(models.Model):
 			tag = Tag.objects.filter(tag = tn).first()
 			if tag is None:
 				tag = Tag.objects.create(tag = tn)
+			else:
+				continue
 			tout.append(tag)
 		self.tags.set(tout)
 	def __str__(self):
 		return str('"' + self.title + '" in ' + self.lang + ' by ' + self.author)
 
 class Tag(models.Model):
-	tag = models.CharField(max_length = 15, unique = True, blank = True)
+	tag = models.CharField(max_length = 15, unique = True, null = True)
 	def __str__(self):
 		return self.tag
