@@ -13,5 +13,3 @@ class SnippetForm(forms.ModelForm):
 			'lang',
 			'code'
 		]
-
-# TODO: tag form
