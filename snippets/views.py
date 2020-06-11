@@ -18,7 +18,7 @@ def add_snippet(request):
 			snip = form.save(commit = False)
 			snip.author = request.user
 			snip.save()
-			snippet.set_tags(form.cleaned_data['tag_names'])
+			snip.set_tags(form.cleaned_data['tag_names'])
 			return redirect(to = 'list_snip')
 	return render(request, "add_snip.html", { 'form': form })
 
