@@ -5,22 +5,23 @@
 	<form action="{% url 'search' %}", method="GET">
 		<input name="q" placeholder="search...">
 	</form>
-	{% if query is None %}
 
-	{% else %}
+	{% if query is not None %}
 		<h1>Search results: {{ query }}</h1>
 		<hr>
 
 		{% for snippet in user.snippets.all %}
 			{% if query in snippet.lang %}
-				<h2><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
-				<h3 id="hasquery">{{ snippet.lang }}</h3>
-				<pre><code>{{ snippet.code }}</code></pre>
-				<span>
-					{% for tag in snippet.tags.all %}
-						<a class="tag">{{ tag.tag }}</a>
-					{% endfor %}
-				</span>
+				<div>
+					<h2><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
+					<h3 id="hasquery">{{ snippet.lang }}</h3>
+					<pre><code>{{ snippet.code }}</code></pre>
+					<span>
+						{% for tag in snippet.tags.all %}
+							<a class="tag" href="/search/?q={{ tag.tag }}">{{ tag.tag }}</a>
+						{% endfor %}
+					</span>
+				</div>
 				<hr>
 			{% elif query in snippet.get_tags %}
 				<h2><a href="{% url 'view_snip' pk=snippet.pk %}">{{ snippet.title }}</a></h2>
@@ -29,9 +30,9 @@
 				<span>
 					{% for tag in snippet.tags.all %}
 						{% if query in tag.tag %}
-							<a class="tag" id="hasquery">{{ tag.tag }}</a>
+							<a class="tag" id="hasquery" href="/search/?q={{ tag.tag }}">{{ tag.tag }}</a>
 						{% else %}
-							<a class="tag">{{ tag.tag }}</a>
+							<a class="tag" href="/search/?q={{ tag.tag }}">{{ tag.tag }}</a>
 						{% endif %}
 					{% endfor %}
 				</span>
@@ -42,7 +43,7 @@
 				<pre><code>{{ snippet.code }}</code></pre>
 				<span>
 					{% for tag in snippet.tags.all %}
-						<a class="tag">{{ tag.tag }}</a>
+						<a class="tag" href="/search/?q={{ tag.tag }}">{{ tag.tag }}</a>
 					{% endfor %}
 				</span>
 				<hr>
@@ -52,7 +53,7 @@
 				<pre><code id="hasquery">{{ snippet.code }}</code></pre>
 				<span>
 					{% for tag in snippet.tags.all %}
-						<a class="tag">{{ tag.tag }}</a>
+						<a class="tag" href="/search/?q={{ tag.tag }}">{{ tag.tag }}</a>
 					{% endfor %}
 				</span>
 				<hr>
